@@ -14,7 +14,7 @@ A collection of useful additional validators for use with Preside's forms system
 
 Makes a field required if another specified checkbox field is checked.
 
-```
+```xml
 <field name="subscribe"     control="checkbox" />
 <field name="email_address" control="emailInput">
 	<rule validator="requiredIfOtherFieldChecked">
@@ -28,7 +28,7 @@ Makes a field required if another specified checkbox field is checked.
 
 Makes a field required if another specified checkbox field is not checked.
 
-```
+```xml
 <field name="use_billing_address" control="checkbox" />
 <field name="shipping_address">
 	<rule validator="requiredIfOtherFieldNotChecked">
@@ -42,7 +42,7 @@ Makes a field required if another specified checkbox field is not checked.
 
 Makes a field required if another specified field is empty. In this example, at least one of the inputs would have to be filled.
 
-```
+```xml
 <field name="input_one">
 	<rule validator="requiredIfOtherFieldEmpty">
 		<param name="otherField" value="input_two" />
@@ -59,7 +59,7 @@ Makes a field required if another specified field is empty. In this example, at 
 
 Makes a field required if another specified field is not empty. In this example, if one input is filled then the other is also required.
 
-```
+```xml
 <field name="address">
 	<rule validator="requiredIfOtherFieldNotEmpty">
 		<param name="otherField" value="postcode" />
@@ -76,7 +76,7 @@ Makes a field required if another specified field is not empty. In this example,
 
 Makes a field required if the value of another field matches the specified value. Here, if "Yes" is chosen from the subcribe select control, then the email address is required.
 
-```
+```xml
 <field name="subscribe"     control="select" values="yes,no" />
 <field name="email_address" control="emailInput">
 	<rule validator="requiredIfOtherFieldValue">
@@ -90,7 +90,7 @@ Makes a field required if the value of another field matches the specified value
 
 Checks for a simple web URL. Requires either `http://` or `https://` at the start.
 
-```
+```xml
 <field name="website_url">
 	<rule validator="simpleUrl" />
 </field>
@@ -100,7 +100,7 @@ Checks for a simple web URL. Requires either `http://` or `https://` at the star
 
 Validates a phone number is valid for the UK. Allows brackets, spaces, `+44` or `0` prefix, and an optional extension following a #.
 
-```
+```xml
 <field name="telephone">
 	<rule validator="ukPhone" />
 </field>
@@ -110,7 +110,7 @@ Validates a phone number is valid for the UK. Allows brackets, spaces, `+44` or 
 
 Validates a UK postcode format. Valid with or without a space in the middle.
 
-```
+```xml
 <field name="postal_code">
 	<rule validator="ukPostcode" />
 </field>
@@ -120,7 +120,7 @@ Validates a UK postcode format. Valid with or without a space in the middle.
 
 Validates a UK driving licence number.
 
-```
+```xml
 <field name="driving_licence">
 	<rule validator="ukDrivingLicence" />
 </field>
