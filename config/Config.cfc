@@ -4,6 +4,5 @@ component {
 		var settings = arguments.config.settings ?: {};
 
 		settings.validationProviders.append( "ValidationExtrasValidators" );
-
 	}
 }
