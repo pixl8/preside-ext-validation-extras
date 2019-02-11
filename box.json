@@ -1,7 +1,7 @@
 {
     "name":"PresideCMS Extension: Validation Extras",
-    "version":"1.0.0",
-    "location":"https://github.com/pixl8/preside-ext-validation-extras/archive/v1.0.0.zip",
+    "version":"1.0.1",
+    "location":"pixl8/preside-ext-validation-extras#v1.0.1",
     "author":"Pixl8 Interactive",
     "directory":"application/extensions",
     "homepage":"https://github.com/pixl8/preside-ext-validation-extras",
