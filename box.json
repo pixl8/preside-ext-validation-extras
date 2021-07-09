@@ -1,20 +1,24 @@
 {
     "name":"PresideCMS Extension: Validation Extras",
-    "version":"1.0.1",
-    "location":"pixl8/preside-ext-validation-extras#v1.0.1",
+    "type":"preside-extensions",
+    "version":"$VERSION_NUMBER",
+    "location":"$DOWNLOAD_URL",
+	"private":false,
     "author":"Pixl8 Interactive",
     "directory":"application/extensions",
     "homepage":"https://github.com/pixl8/preside-ext-validation-extras",
     "documentation":"https://github.com/pixl8/preside-ext-validation-extras",
+    "bugs":"https://github.com/pixl8/preside-ext-validation-extras",
     "repository":{
         "type":"git",
         "URL":"https://github.com/pixl8/preside-ext-validation-extras"
     },
-    "bugs":"https://github.com/pixl8/preside-ext-validation-extras",
     "slug":"preside-ext-validation-extras",
-    "type":"preside-extensions",
     "projectURL":"https://github.com/pixl8/preside-ext-validation-extras",
     "ignore":[
-        "**/.*"
+        ".git/*",
+        ".gitignore",
+        ".github/*",
+        ".twgit_features_subject"
     ]
 }
