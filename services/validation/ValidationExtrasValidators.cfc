@@ -68,7 +68,7 @@
 	}
 
 
-	public boolean function simpleUrl( required string fieldName, any value="" ) validatorMessage="ems:validation.isValidUrl" {
+	public boolean function simpleUrl( required string fieldName, any value="" ) validatorMessage="validationExtras:validation.simpleUrl.default" {
 		return IsEmpty( arguments.value ) || ReFindNoCase( variables.SIMPLE_URL_REGEX, arguments.value );
 	}
 	public string function simpleUrl_js() validatorMessage="validationExtras:validation.simpleUrl.default" {
