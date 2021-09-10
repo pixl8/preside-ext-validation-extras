@@ -20,7 +20,7 @@
 		return arguments.data.keyExists( fieldName ) && !IsEmpty( value );
 	}
 	public string function requiredIfOtherFieldChecked_js() validatorMessage="cms:validation.required.default" {
-		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length || !$otherField.is( ':checked' ) ) { return true; } return ( value.length > 0 ); }";
+		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']:checked' ); if ( !$otherField.length || !$otherField.is( ':checked' ) || ( params[1] != null && $otherField.val() != params[1] ) ) { return true; } return ( value.length > 0 ); }";
 	}
 
 
