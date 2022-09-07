@@ -63,8 +63,8 @@
 		}
 		return arguments.data.keyExists( fieldName ) && !IsEmpty( value );
 	}
-	public string function requiredIfOtherFieldValue_js() validatorMessage="cms:validation.conditional.required.default" {
-		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length || $otherField.val() != params[1] ) { return true; } return ( value.length > 0 ); }";
+	public string function requiredIfOtherFieldValue_js() validatorMessage="cms:validation.required.default" {
+		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length ) { return true}; var otherValue = $otherField.prop('type')=='radio'?$( '[name=' + params[0] + ']:checked').val() : $otherField.val(); if ( otherValue != params[1] ) { return true; } return ( value.length > 0 ); }";
 	}
 
 

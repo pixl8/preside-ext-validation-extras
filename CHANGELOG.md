@@ -1,8 +1,12 @@
 # Changelog
 
+## v1.1.0
+
+* VALIDATION-3 - requiredIfOtherFieldValue should work with radio lists
+
 ## v1.0.5
 
-* [VALIDATION-2](https://projects.pixl8.london/browse/VALIDATION-2) - i18n missing on error label when "required if checkbox checked" fields are not filled in
+* VALIDATION-2 - i18n missing on error label when "required if checkbox checked" fields are not filled in
 
 ## v1.0.4
 
