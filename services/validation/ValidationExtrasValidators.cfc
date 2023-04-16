@@ -4,11 +4,18 @@
 
  component {
 
- 	public any function init() {
+	/**
+	 * @systemConfigurationService.inject systemConfigurationService
+	 *
+	 */
+ 	public any function init(
+		required any  systemConfigurationService
+	) {
  		variables.SIMPLE_URL_REGEX         = "^https?:\/\/([-_A-Z0-9]+\.)+[-_A-Z0-9]+(\/.*)?$";
 		variables.UK_POSTCODE_REGEX        = "^([A-Z][A-HJ-Y]?\d[A-Z\d]? ?\d[A-Z]{2}|GIR ?0A{2})$";
 		variables.UK_DRIVING_LICENCE_REGEX = "^[A-Z9]{5}\d[0156]\d([0][1-9]|[12]\d|3[01])\d[A-Z9]{2}\d[A-Z]{2}$";
 		variables.UK_PHONE_REGEX           = "^(((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\##(\d{4}|\d{3}))?$";
+		_setSystemConfigurationService( arguments.systemConfigurationService );
 
 		return this;
 	}
@@ -67,6 +74,17 @@
 		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length ) { return true}; var otherValue = $otherField.prop('type')=='radio'?$( '[name=' + params[0] + ']:checked').val() : $otherField.val(); if ( otherValue != params[1] ) { return true; } return ( value.length > 0 ); }";
 	}
 
+	public boolean function requiredIfOtherFieldMatchSystemLookup( required string fieldName, any value="", struct data={}, required string otherField, required string category, required setting ) validatorMessage="cms:validation.conditional.required.default" {
+		var lookupValue     = _getSystemConfigurationService().getSetting( category = arguments.category, setting = arguments.setting, default = "" );
+		var otherFieldValue = arguments.data[ arguments.otherField ] ?: "";
+
+		if ( !len( trim ( lookupValue ) ) || !len( trim( otherFieldValue ) ) ) {
+			return true;
+		}
+		
+		return !( listFindNoCase( lookupValue, otherFieldValue ) && !len( trim( value ) ) );
+	}
+
 
 	public boolean function simpleUrl( required string fieldName, any value="" ) validatorMessage="validationExtras:validation.simpleUrl.default" {
 		return IsEmpty( arguments.value ) || ReFindNoCase( variables.SIMPLE_URL_REGEX, arguments.value );
@@ -111,5 +129,11 @@
 		return "function( value, el, params ){ return !value.length || value.match( /#variables.UK_DRIVING_LICENCE_REGEX#/i ) !== null }";
 	}
 
-
+	// GETTERS AND SETTERS
+	private any function _getSystemConfigurationService() {
+		return _systemConfigurationService;
+	}
+	private void function _setSystemConfigurationService( required any systemConfigurationService ) {
+		_systemConfigurationService = arguments.systemConfigurationService;
+	}
 }

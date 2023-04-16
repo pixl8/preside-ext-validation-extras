@@ -86,6 +86,20 @@ Makes a field required if the value of another field matches the specified value
 </field>
 ```
 
+### requiredIfOtherFieldMatchSystemLookup
+Makes a field required if the value of another field matches systemSetting. In this example, if the ethnicity  value matches the value on systemSetting ( category="lookup", setting="ethnicity_other" ), then the ethnicity_other field will be required
+```xml
+<field name="ethnicity"       control="objectPicker" object="ethnicity" />
+<field name="ethnicity_other" control="textInput">
+	<rule validator="requiredIfOtherFieldMatchSystemLookup">
+		<param name="otherField" value="ethnicity"       />
+		<param name="category"   value="lookup"          />
+		<param name="setting"    value="ethnicity_other" />
+	</rule>
+</field>
+```
+
+
 ### simpleUrl
 
 Checks for a simple web URL. Requires either `http://` or `https://` at the start.
