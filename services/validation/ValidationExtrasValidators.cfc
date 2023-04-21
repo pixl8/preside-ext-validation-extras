@@ -67,6 +67,7 @@
 		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length ) { return true}; var otherValue = $otherField.prop('type')=='radio'?$( '[name=' + params[0] + ']:checked').val() : $otherField.val(); if ( otherValue != params[1] ) { return true; } return ( value.length > 0 ); }";
 	}
 
+
 	public boolean function requiredIfOtherFieldInValues( required string fieldName, any value="", required struct data, required string otherField, required string otherFieldValues ) validatorMessage="cms:validation.conditional.required.default" {
 
 		var otherValues = ListToArray( arguments.otherFieldValues );
