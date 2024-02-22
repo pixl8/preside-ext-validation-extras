@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.1
+
+* Update build version generator
+
 ## v1.2.0
 
 * [VALIDATION-5](https://projects.pixl8.london/browse/VALIDATION-5) - requiredIfOtherFieldInValues to allow required for multiple values
