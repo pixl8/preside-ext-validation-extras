@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.2
+
+* Add missing client side validation for the `requiredifotherfieldmatchsystemlookup` validator
+
 ## v1.2.1
 
 * Update build version generator
