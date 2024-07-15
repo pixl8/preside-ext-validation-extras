@@ -78,7 +78,9 @@ component {
 		
 		return !( listFindNoCase( lookupValue, otherFieldValue ) && !len( trim( value ) ) );
 	}
-
+	public string function requiredIfOtherFieldMatchSystemLookup_js() {
+		return "function( value, el, params ) { return true; }";
+	}
 
 	public boolean function requiredIfOtherFieldInValues( required string fieldName, any value="", required struct data, required string otherField, required string otherFieldValues ) validatorMessage="cms:validation.conditional.required.default" {
 
