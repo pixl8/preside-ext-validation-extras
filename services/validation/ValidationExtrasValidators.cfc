@@ -47,10 +47,10 @@ component {
 	}
 
 	public boolean function requiredIfOtherFieldsEmpty(
-          required string fieldName
-        , required struct data
-        , required string otherFields
-        ,          any    value = ""
+		  required string fieldName
+		, required struct data
+		, required string otherFields
+		,          any    value = ""
     ) validatorMessage="cms:validation.conditional.required.default" {
         for ( var otherField in ListToArray( otherFields ) ) {
             if ( len( arguments.data[ otherField ] ?: "" ) ) {
@@ -59,16 +59,17 @@ component {
         }
         return arguments.data.keyExists( fieldName ) && !IsEmpty( value );
     }
+
     public string function requiredIfOtherFieldsEmpty_js() validatorMessage="cms:validation.conditional.required.default" {
-        return "function( value, el, params ){
-			otherFields = params[0].split(',');
-  			for ( var i=0; i<otherFields.length; i++ ) {
-  				var $otherField= $( '[name=' + otherFields[i] + ']');
-     			if ( $otherField.length && $otherField.val().length ) {
-     				return true;
-    			}
+		return "function( value, el, params ){
+			var otherFields = params[0].split(',');
+			for ( var i=0; i<otherFields.length; i++ ) {
+				var $otherField= $( '[name=' + otherFields[i] + ']');
+				if ( $otherField.length && $otherField.val().length ) {
+					return true;
+				}
 			}
-  			return ( value.length > 0 );
+			return ( value.length > 0 );
 		}";
     }
 
