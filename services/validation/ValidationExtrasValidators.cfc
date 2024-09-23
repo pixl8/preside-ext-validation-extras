@@ -50,7 +50,7 @@ component {
           required string fieldName
         , required struct data
         , required string otherFields
-        ,          any    value = "" 
+        ,          any    value = ""
     ) validatorMessage="cms:validation.conditional.required.default" {
         for ( var otherField in ListToArray( otherFields ) ) {
             if ( len( arguments.data[ otherField ] ?: "" ) ) {
@@ -60,7 +60,16 @@ component {
         return arguments.data.keyExists( fieldName ) && !IsEmpty( value );
     }
     public string function requiredIfOtherFieldsEmpty_js() validatorMessage="cms:validation.conditional.required.default" {
-        return "function( value, el, params ){ otherFields = params[0].split(',');var withValue = $.grep( otherFields, function( otherField ) { var $otherField=$( 'name=' + otherField + ']');if ( !$otherField.length || $otherField.val().length ) { return true; } } ); if ( withValue.length ) { return true; } return ( value.length > 0 ); }";
+        return "function( value, el, params ){
+			otherFields = params[0].split(',');
+  			for ( var i=0; i<otherFields.length; i++ ) {
+  				var $otherField= $( '[name=' + otherFields[i] + ']');
+     			if ( $otherField.length && $otherField.val().length ) {
+     				return true;
+    			}
+			}
+  			return ( value.length > 0 );
+		}";
     }
 
 	public boolean function requiredIfOtherFieldNotEmpty( required string fieldName, any value="", required struct data, required string otherField ) validatorMessage="cms:validation.conditional.required.default" {
@@ -91,7 +100,7 @@ component {
 		if ( !len( trim ( lookupValue ) ) || !len( trim( otherFieldValue ) ) ) {
 			return true;
 		}
-		
+
 		return !( listFindNoCase( lookupValue, otherFieldValue ) && !len( trim( value ) ) );
 	}
 	public string function requiredIfOtherFieldMatchSystemLookup_js() {
