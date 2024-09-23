@@ -46,6 +46,22 @@ component {
 		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length || $otherField.val().length ) { return true; } return ( value.length > 0 ); }";
 	}
 
+	public boolean function requiredIfOtherFieldsEmpty(
+          required string fieldName
+        , required struct data
+        , required string otherFields
+        ,          any    value = "" 
+    ) validatorMessage="cms:validation.conditional.required.default" {
+        for ( var otherField in ListToArray( otherFields ) ) {
+            if ( len( arguments.data[ otherField ] ?: "" ) ) {
+                return true;
+            }
+        }
+        return arguments.data.keyExists( fieldName ) && !IsEmpty( value );
+    }
+    public string function requiredIfOtherFieldsEmpty_js() validatorMessage="cms:validation.conditional.required.default" {
+        return "function( value, el, params ){ otherFields = params[0].split(',');var withValue = $.grep( otherFields, function( otherField ) { var $otherField=$( 'name=' + otherField + ']');if ( !$otherField.length || $otherField.val().length ) { return true; } } ); if ( withValue.length ) { return true; } return ( value.length > 0 ); }";
+    }
 
 	public boolean function requiredIfOtherFieldNotEmpty( required string fieldName, any value="", required struct data, required string otherField ) validatorMessage="cms:validation.conditional.required.default" {
 		if ( !len( arguments.data[ arguments.otherField ] ?: "" ) ) {
