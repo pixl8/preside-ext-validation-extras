@@ -108,8 +108,8 @@ component {
 		return "function( value, el, params ) { return true; }";
 	}
 
-	public boolean function requiredIfOtherFieldInValues( required string fieldName, any value="", required struct data, required string otherField, required string otherFieldValues ) validatorMessage="cms:validation.conditional.required.default" {
 
+	public boolean function requiredIfOtherFieldInValues( required string fieldName, any value="", required struct data, required string otherField, required string otherFieldValues ) validatorMessage="cms:validation.conditional.required.default" {
 		var otherValues = ListToArray( arguments.otherFieldValues );
 		if ( ( !ArrayContains( otherValues, arguments.data[ arguments.otherField ] ?: "" ) ) ) {
 			return true;
@@ -126,6 +126,37 @@ component {
 	}
 	public string function simpleUrl_js() validatorMessage="validationExtras:validation.simpleUrl.default" {
 		return "function( value, el, params ){ return !value.length || value.match( /#variables.SIMPLE_URL_REGEX#/i ) !== null }";
+	}
+
+
+	public boolean function minIfOtherFieldValue( required string fieldName, string value="" ) validatorMessage="cms:validation.min.default" {
+		if ( ( arguments.data[ arguments.otherField ] ?: "" ) != arguments.otherFieldValue ) {
+			return true;
+		}
+
+		if ( not Len( Trim( arguments.value ) ) ) {
+			return true;
+		}
+
+		return Val( Replace( arguments.value, ",", "", "all" ) ) >= arguments.minValue;
+	}
+	public string function minIfOtherFieldValue_js() {
+		return "function( value, el, params ) { return true; }";
+	}
+
+	public boolean function maxIfOtherFieldValue( required string fieldName, string value="" ) validatorMessage="cms:validation.min.default" {
+		if ( ( arguments.data[ arguments.otherField ] ?: "" ) != arguments.otherFieldValue ) {
+			return true;
+		}
+
+		if ( not Len( Trim( arguments.value ) ) ) {
+			return true;
+		}
+
+		return Val( Replace( arguments.value, ",", "", "all" ) ) <= arguments.maxValue;
+	}
+	public string function maxIfOtherFieldValue_js() {
+		return "function( value, el, params ) { return true; }";
 	}
 
 
