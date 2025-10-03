@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2.3
+
+* VALIDATION-8 - Min/ Max if other field value
+
+
 ## v1.2.2
 
 * Add missing client side validation for the `requiredifotherfieldmatchsystemlookup` validator
@@ -10,8 +15,8 @@
 
 ## v1.2.0
 
-* [VALIDATION-5](https://projects.pixl8.london/browse/VALIDATION-5) - requiredIfOtherFieldInValues to allow required for multiple values
-* [VALIDATION-4](https://projects.pixl8.london/browse/VALIDATION-4) - Add rule for a field to be required if other field match system config
+* VALIDATION-5 - requiredIfOtherFieldInValues to allow required for multiple values
+* VALIDATION-4 - Add rule for a field to be required if other field match system config
 
 ## v1.1.0
 
