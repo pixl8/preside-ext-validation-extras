@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.4
+
+* Apply translation manager CI action
+
 ## v1.2.3
 
 * VALIDATION-8 - Min/ Max if other field value
