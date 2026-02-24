@@ -21,7 +21,7 @@ component {
 		return arguments.data.keyExists( fieldName ) && !IsEmpty( value );
 	}
 	public string function requiredIfOtherFieldChecked_js() validatorMessage="cms:validation.conditional.required.default" {
-		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']:checked' ); if ( !$otherField.length || !$otherField.is( ':checked' ) || ( params[1] != null && $otherField.val() != params[1] ) ) { return true; } return ( value.length > 0 ); }";
+		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']:checked' ); if ( !$otherField.length || !$otherField.is( ':checked' ) || ( params[1] != null && $otherField.val() != params[1] ) ) { return true; } return ( value && value.length > 0 ); }";
 	}
 
 
@@ -32,7 +32,7 @@ component {
 		return arguments.data.keyExists( fieldName ) && !IsEmpty( value );
 	}
 	public string function requiredIfOtherFieldNotChecked_js() validatorMessage="cms:validation.conditional.required.default" {
-		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length || $otherField.is( ':checked' ) ) { return true; } return ( value.length > 0 ); }";
+		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length || $otherField.is( ':checked' ) ) { return true; } return ( value && value.length > 0 ); }";
 	}
 
 
@@ -43,7 +43,7 @@ component {
 		return arguments.data.keyExists( fieldName ) && !IsEmpty( value );
 	}
 	public string function requiredIfOtherFieldEmpty_js() validatorMessage="cms:validation.conditional.required.default" {
-		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length || $otherField.val().length ) { return true; } return ( value.length > 0 ); }";
+		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length || $otherField.val().length ) { return true; } return ( value && value.length > 0 ); }";
 	}
 
 	public boolean function requiredIfOtherFieldsEmpty(
@@ -80,7 +80,7 @@ component {
 		return arguments.data.keyExists( fieldName ) && !IsEmpty( value );
 	}
 	public string function requiredIfOtherFieldNotEmpty_js() validatorMessage="cms:validation.conditional.required.default" {
-		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length || !$otherField.val().length ) { return true; } return ( value.length > 0 ); }";
+		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length || !$otherField.val().length ) { return true; } return ( value && value.length > 0 ); }";
 	}
 
 
@@ -91,7 +91,7 @@ component {
 		return arguments.data.keyExists( fieldName ) && !IsEmpty( value );
 	}
 	public string function requiredIfOtherFieldValue_js() validatorMessage="cms:validation.required.default" {
-		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length ) { return true}; var otherValue = $otherField.prop('type')=='radio'?$( '[name=' + params[0] + ']:checked').val() : $otherField.val(); if ( otherValue != params[1] ) { return true; } return ( value.length > 0 ); }";
+		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length ) { return true}; var otherValue = $otherField.prop('type')=='radio'?$( '[name=' + params[0] + ']:checked').val() : $otherField.val(); if ( otherValue != params[1] ) { return true; } return ( value && value.length > 0 ); }";
 	}
 
 	public boolean function requiredIfOtherFieldMatchSystemLookup( required string fieldName, any value="", struct data={}, required string otherField, required string category, required setting ) validatorMessage="cms:validation.conditional.required.default" {
@@ -118,7 +118,7 @@ component {
 	}
 
 	public string function requiredIfOtherFieldInValues_js() validatorMessage="cms:validation.required.default" {
-		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length ) { return true}; var otherValue = $otherField.prop('type')=='radio'?$( '[name=' + params[0] + ']:checked').val() : $otherField.val(); var otherValues = params[1].split(',');if ( !otherValues.includes( otherValue ) ) { return true; } return ( value.length > 0 ); }";
+		return "function( value, el, params ){ $otherField = $( '[name=' + params[0] + ']' ); if ( !$otherField.length ) { return true}; var otherValue = $otherField.prop('type')=='radio'?$( '[name=' + params[0] + ']:checked').val() : $otherField.val(); var otherValues = params[1].split(',');if ( !otherValues.includes( otherValue ) ) { return true; } return ( value && value.length > 0 ); }";
 	}
 
 	public boolean function simpleUrl( required string fieldName, any value="" ) validatorMessage="validationExtras:validation.simpleUrl.default" {
