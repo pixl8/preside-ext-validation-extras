@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.5
+
+* JS validators fail if value is null
+
 ## v1.2.4
 
 * Apply translation manager CI action
